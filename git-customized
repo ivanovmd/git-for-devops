@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+import subprocess
+
+get_current_branch_cmd = 'git rev-parse --abbrev-ref HEAD'
+
+ls_cmd = 'ls -a'
+
+
+def call_cmd(cmd: list[str]):
+    cmd = cmd.split(' ')
+    process = subprocess.Popen(
+        cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=None, shell=True)
+    return process.communicate()
+
+
+output, error = call_cmd(ls_cmd)
+
+
+print(output.decode())
